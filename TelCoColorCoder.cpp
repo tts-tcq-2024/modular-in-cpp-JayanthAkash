@@ -1,15 +1,12 @@
 #include "TelCoColorCoder.h"
+#include "iPrinter.h"
 
 namespace TelCoColorCoder 
 {
-    const char* MajorColorNames[] = {
-        "White", "Red", "Black", "Yellow", "Violet"
-    };
+    const char* MajorColorNames[] = {"White", "Red", "Black", "Yellow", "Violet"};
     int numberOfMajorColors = sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
     
-    const char* MinorColorNames[] = {
-        "Blue", "Orange", "Green", "Brown", "Slate"
-    };
+    const char* MinorColorNames[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
     int numberOfMinorColors = sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
 
     ColorPair::ColorPair(MajorColor major, MinorColor minor):
@@ -39,5 +36,18 @@ namespace TelCoColorCoder
 
     int GetPairNumberFromColor(MajorColor major, MinorColor minor) {
         return major * numberOfMinorColors + minor + 1;
+    }
+
+    void PrintColorReferenceManual(iPrinter& printer) {
+        std::ostringstream oss;
+        oss << "Color Coding Reference Manual:\n";
+        int pairNumber = 1;
+        for (int major = 0; major < numberOfMajorColors; ++major) {
+            for (int minor = 0; minor < numberOfMinorColors; ++minor) {
+                oss << "Pair Number: " << pairNumber << " - "<< MajorColorNames[major] << " " << MinorColorNames[minor] << "\n";
+                ++pairNumber;
+            }
+        }
+        printer.print(oss.str());
     }
 }

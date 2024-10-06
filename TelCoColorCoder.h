@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <sstream>
+#include "iPrinter.h"
 
 namespace TelCoColorCoder 
 {
@@ -24,4 +26,5 @@ namespace TelCoColorCoder
 
     ColorPair GetColorFromPairNumber(int pairNumber);
     int GetPairNumberFromColor(MajorColor major, MinorColor minor);
+    void PrintColorReferenceManual(iPrinter& printer);
 }
